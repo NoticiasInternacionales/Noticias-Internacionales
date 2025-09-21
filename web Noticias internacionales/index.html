@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticias Internacionales</title>
+<style>
+/* Reset y estilos base */
+* {box-sizing:border-box; margin:0; padding:0;}
+body {font-family: Arial, sans-serif; background:#f9f9f9; color:#333;}
+a {text-decoration:none; color:inherit;}
+
+/* Encabezado */
+header {background:#090909; color:#f9f8f8; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
+header h1 {font-size:24px;}
+nav {display:flex; align-items:center; flex-wrap:wrap;}
+nav a {margin-left:15px; font-weight:bold; color:#faf8f8;}
+nav a:hover {text-decoration:underline;}
+.search-box {margin-left:20px;}
+.search-box input {padding:5px; border-radius:5px; border:none;}
+
+/* Carrusel */
+.carousel {position:relative; overflow:hidden; margin:20px auto; max-width:1200px; border-radius:10px;}
+.slides {display:flex; transition:0.5s ease;}
+.slides img {width:100%; flex-shrink:0; border-radius:10px;}
+.carousel-buttons {position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; transform:translateY(-50%);}
+.carousel-buttons button {background:rgba(0,0,0,0.5); border:none; color:#fff; padding:10px; cursor:pointer; border-radius:5px;}
+
+/* Contenido principal */
+.container {display:flex; flex-wrap:wrap; max-width:1200px; margin:20px auto;}
+.main {flex:0 0 65%; margin-right:5%;}
+.sidebar {flex:0 0 30%;}
+
+/* Tarjetas de noticias */
+.news-card {background:#fff; margin-bottom:20px; padding:15px; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:transform 0.3s;}
+.news-card:hover {transform:translateY(-5px);}
+.news-card img {width:100%; border-radius:5px;}
+.news-card h3 {margin:10px 0 5px;}
+.news-card p {font-size:14px;}
+
+/* Videos */
+.video-section iframe {width:100%; height:200px; border:none; border-radius:5px; margin-bottom:15px;}
+
+/* Barra lateral */
+.sidebar h3 {margin-bottom:10px; font-size:18px; color:#fefefe;}
+.sidebar ul {list-style:none;}
+.sidebar ul li {margin-bottom:10px;}
+.social-buttons a {display:inline-block; margin:5px 5px 0 0; background:#555; color:#fff; padding:8px 12px; border-radius:5px; font-weight:bold;}
+.social-buttons a:hover {background:#000;}
+
+/* Comentarios */
+.comments {background:#fff; padding:15px; border-radius:5px; margin-bottom:20px;}
+.comments h3 {margin-bottom:10px;}
+.comments input, .comments textarea {width:100%; margin-bottom:10px; padding:8px; border-radius:5px; border:1px solid #ccc;}
+.comments button {padding:8px 12px; background:#111; color:#fff; border:none; border-radius:5px; cursor:pointer;}
+.comments button:hover {background:#000;}
+
+/* Newsletter */
+.newsletter input[type=email] {padding:8px; width:70%; border-radius:5px; border:1px solid #ccc;}
+.newsletter button {padding:8px 12px; border:none; background:#111; color:#fff; border-radius:5px; cursor:pointer;}
+.newsletter button:hover {background:#000;}
+
+/* Footer */
+footer {background:#111; color:#fff; text-align:center; padding:20px; margin-top:20px;}
+footer a {color:#fff; text-decoration:underline;}
+
+/* Responsive */
+@media(max-width:768px){
+    .container {flex-direction:column;}
+    .main, .sidebar {flex:1 0 100%; margin-right:0;}
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Noticias Internacionales</h1>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Noticias</a>
+        <a href="#">Opinión</a>
+        <a href="#">Videos</a>
+        <a href="#">Contacto</a>
+        <div class="search-box">
+            <input type="text" placeholder="Buscar...">
+        </div>
+    </nav>
+</header>
+
+<!-- Carrusel -->
+<div class="carousel">
+    <div class="slides">
+        <img src="https://via.placeholder.com/1200x500?text=Noticia+1" alt="Noticia 1">
+        <img src="https://via.placeholder.com/1200x500?text=Noticia+2" alt="Noticia 2">
+        <img src="https://via.placeholder.com/1200x500?text=Noticia+3" alt="Noticia 3">
+    </div>
+    <div class="carousel-buttons">
+        <button onclick="prevSlide()">&#10094;</button>
+        <button onclick="nextSlide()">&#10095;</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="main">
+        <div class="news-card">
+            <img src="https://via.placeholder.com/800x400" alt="Noticia Principal">
+            <h3>Noticia Destacada Principal</h3>
+            <p>Resumen de la noticia principal. Información actual y relevante para tus lectores.</p>
+        </div>
+
+        <div class="news-card video-section">
+            <h3>Video Destacado</h3>
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+
+        <div class="news-card">
+            <h3>Últimas Noticias</h3>
+            <ul>
+                <li>Última noticia 1</li>
+                <li>Última noticia 2</li>
+                <li>Última noticia 3</li>
+            </ul>
+        </div>
+
+        <!-- Comentarios -->
+        <div class="comments">
+            <h3>Comentarios</h3>
+            <input type="text" placeholder="Nombre">
+            <textarea placeholder="Comentario"></textarea>
+            <button onclick="addComment()">Publicar</button>
+            <div id="comments-list"></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="news-card">
+            <h3>Categorías</h3>
+            <ul>
+                <li><a href="#">Política</a></li>
+                <li><a href="#">Economía</a></li>
+                <li><a href="#">Deportes</a></li>
+                <li><a href="#">Cultura</a></li>
+                <li><a href="#">Tecnología</a></li>
+            </ul>
+        </div>
+
+        <div class="news-card social-buttons">
+            <h3>Síguenos</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+
+
+        <div class="news-card newsletter">
+            <h3>Suscríbete al Newsletter</h3>
+            <input type="email" placeholder="Tu correo electrónico">
+            <button>Suscribirse</button>
+        </div>
+
+        <div class="news-card">
+            <h3>Noticias Populares</h3>
+            <p>Noticia popular 1</p>
+            <p>Noticia popular 2</p>
+            <p>Noticia popular 3</p>
+        </div>
+
+        <div class="news-card">
+            <h3>Visitas</h3>
+            <p id="visit-count">0</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Noticias Internacionales | <a href="#">Política de privacidad</a> | <a href="#">Términos de uso</a></p>
+</footer>
+
+<script>
+// Carrusel
+const slides = document.querySelector('.slides');
+const totalSlides = slides.children.length;
+let index = 0;
+function showSlide(i){ slides.style.transform = `translateX(${-i*100}%)`; }
+function nextSlide(){ index = (index+1)%totalSlides; showSlide(index); }
+function prevSlide(){ index = (index-1+totalSlides)%totalSlides; showSlide(index); }
+setInterval(nextSlide,5000);
+
+// Comentarios
+function addComment(){
+    const name = document.querySelector('.comments input').value;
+    const text = document.querySelector('.comments textarea').value;
+    if(name && text){
+        const div = document.createElement('div');
+        div.style.marginTop = '10px';
+        div.innerHTML = `<strong>${name}</strong>: ${text}`;
+        document.getElementById('comments-list').appendChild(div);
+        document.querySelector('.comments input').value = '';
+        document.querySelector('.comments textarea').value = '';
+    }
+}
+
+// Contador de visitas (local)
+let count = localStorage.getItem('visits') || 0;
+count++;
+localStorage.setItem('visits', count);
+document.getElementById('visit-count').textContent = count;
+</script>
+
+</body>
+</html>
